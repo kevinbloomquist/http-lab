@@ -42,9 +42,10 @@ function CriminalsController($http){
 
 	function editCriminal(criminal){
 		$http
-		.patch('http://localhost:3000/criminals/' + criminal._id)
-		.then(function(response){
-			console.log(response.data);
+		.patch('http://localhost:3000/criminals/' + criminal._id,criminal)
+		.then(function(request){
+			console.log(request.data);
+			getCriminals();
 
 		});
 	}

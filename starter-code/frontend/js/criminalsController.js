@@ -8,9 +8,8 @@ function CriminalsController($http){
 	self.all = [];
 	self.getCriminals = getCriminals;
 	self.addCriminal = addCriminal;
-	// self.addCriminal = addCriminal;
-	// self.newCriminal = {};
-	// self.deleteCriminal = deleteCriminal;
+	self.newCriminal = {};
+	self.deleteCriminal = deleteCriminal;
 
 	function getCriminals() {
 		$http
@@ -31,7 +30,12 @@ function CriminalsController($http){
 		self.newCriminal = {};
 	}
 
-	function deleteCriminal(){
-		
+	function deleteCriminal(criminal){
+		$http
+		.delete('http://localhost:3000/criminals/' + criminal._id)
+		.then(function(response){
+			console.log(response.data);
+		getCriminals();
+		});
 	}
 }

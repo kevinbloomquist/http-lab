@@ -10,6 +10,7 @@ function CriminalsController($http){
 	self.addCriminal = addCriminal;
 	self.newCriminal = {};
 	self.deleteCriminal = deleteCriminal;
+	self.editCriminal = editCriminal;
 
 	function getCriminals() {
 		$http
@@ -35,7 +36,16 @@ function CriminalsController($http){
 		.delete('http://localhost:3000/criminals/' + criminal._id)
 		.then(function(response){
 			console.log(response.data);
-		getCriminals();
+			getCriminals();
+		});
+	}
+
+	function editCriminal(criminal){
+		$http
+		.patch('http://localhost:3000/criminals/' + criminal._id)
+		.then(function(response){
+			console.log(response.data);
+
 		});
 	}
 }
